@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/ProcesaLogin")
 public class ProcesaLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,6 +27,7 @@ public class ProcesaLogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
         String contrasena = request.getParameter("contrasena");
@@ -34,10 +35,10 @@ public class ProcesaLogin extends HttpServlet {
         // Validación básica (por ejemplo, usuario y contraseña fijos)
         if ("admin".equals(usuario) && "admin".equals(contrasena)) {
             HttpSession session = request.getSession();
-            session.setAttribute("usuario", usuario);  
-            response.sendRedirect("areaPrivada.jsp");  
+            session.setAttribute("usuario", usuario);
+            response.sendRedirect("areaPrivada.jsp");
         } else {
-            response.sendRedirect("index.jsp?error=true"); 
+            response.sendRedirect("index.jsp?error=true");
         }
 	}
 
